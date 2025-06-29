@@ -305,10 +305,31 @@ function downloadEbook() {
     // Redirect to WhatsApp with e-book message
     const whatsappMessage = `Olá! Gostaria de baixar o e-book "Guia Completo para uma Alimentação Saudável" da Dra. Iara Castro.`;
     const whatsappNumber = '5522999177780';
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
-    setTimeout(() => {
-        window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
-    }, 1000);
+    // Safari-compatible approach
+    try {
+        // For Safari and other browsers that may block popup
+        if (/^((?!chrome|android).)*safari/i.test(navigator.userAgent)) {
+            // Use location.href for Safari
+            setTimeout(() => {
+                window.location.href = whatsappUrl;
+            }, 1000);
+        } else {
+            // Use window.open for other browsers
+            setTimeout(() => {
+                const newWindow = window.open(whatsappUrl, '_blank');
+                if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
+                    // Fallback if popup is blocked
+                    window.location.href = whatsappUrl;
+                }
+            }, 1000);
+        }
+    } catch (error) {
+        // Fallback for any errors
+        console.error('Error opening WhatsApp:', error);
+        window.location.href = whatsappUrl;
+    }
 }
 
 // Update navigation to include e-book
@@ -321,9 +342,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Add hover effect to e-book button
+    // Add event listener to e-book button for better Safari compatibility
     const ebookBtn = document.querySelector('.ebook-download-btn');
     if (ebookBtn) {
+        // Remove onclick attribute and add event listener
+        ebookBtn.removeAttribute('onclick');
+        ebookBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            downloadEbook();
+        });
+
+        // Add hover effect to e-book button
         ebookBtn.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-3px) scale(1.05)';
         });
