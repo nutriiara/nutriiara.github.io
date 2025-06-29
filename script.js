@@ -296,21 +296,6 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-
-// E-book download function
-function downloadEbook() {
-    // Show notification
-    showNotification('Para baixar o e-book, entre em contato via WhatsApp!', 'info');
-
-    // Redirect to WhatsApp with e-book message
-    const whatsappMessage = `Olá! Gostaria de baixar o e-book "Guia Completo para uma Alimentação Saudável" da Dra. Iara Castro.`;
-    const whatsappNumber = '5522999177780';
-
-    setTimeout(() => {
-        window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
-    }, 1000);
-}
-
 // Update navigation to include e-book
 document.addEventListener('DOMContentLoaded', () => {
     // Update mobile menu close functionality for new nav item
@@ -321,7 +306,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Add hover effect to e-book button
+    // Add hover effect to e-book link
     const ebookBtn = document.querySelector('.ebook-download-btn');
     if (ebookBtn) {
         ebookBtn.addEventListener('mouseenter', function() {
