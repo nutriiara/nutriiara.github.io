@@ -58,9 +58,15 @@ form.addEventListener('submit', function(e) {
 
     // WhatsApp number (replace with actual number)
     const whatsappNumber = '5522999177780';
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
-    // Open WhatsApp
-    window.open(`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`, '_blank');
+    // Call Google Ads conversion tracking
+    if (typeof gtag_report_conversion === 'function') {
+        gtag_report_conversion(whatsappURL);
+    } else {
+        // Fallback if gtag_report_conversion is not available
+        window.open(whatsappURL, '_blank');
+    }
 
     // Show success message
     showNotification('Mensagem enviada! Você será redirecionado para o WhatsApp.', 'success');

@@ -15,6 +15,24 @@
     <title>Iara Castro - Nutricionista</title>
     <meta name="description" content="Iara Castro - Nutricionista especializada em alimentação saudável e personalizada. Agende sua consulta e transforme sua saúde.">
     <meta name="keywords" content="nutricionista, alimentação saudável, dieta, emagrecimento, saúde, Iara Castro">
+
+    <!-- Event snippet for Visualização conversion page -->
+    <script>
+    function gtag_report_conversion(url) {
+      var callback = function () {
+        if (typeof(url) != 'undefined') {
+          window.location = url;
+        }
+      };
+      gtag('event', 'conversion', {
+          'send_to': 'AW-16877150299/LhKSCPG2t54aENvA0-8-',
+          'value': 1.0,
+          'currency': 'BRL',
+          'event_callback': callback
+      });
+      return false;
+    }
+    </script>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -195,7 +213,7 @@
                             <span>Orientações para uma vida mais saudável</span>
                         </div>
                     </div>
-                    <a href="https://wa.me/5522999177780?text=Olá! Gostaria de baixar o e-book 'Guia Completo para uma Alimentação Saudável' da Dra. Iara Castro." target="_blank" class="ebook-download-btn">
+                    <a href="https://wa.me/5522999177780?text=Olá! Gostaria de baixar o e-book 'Guia Completo para uma Alimentação Saudável' da Dra. Iara Castro." target="_blank" class="ebook-download-btn" onclick="return gtag_report_conversion(this.href);">
                         <i class="fas fa-download"></i>
                         Baixar E-book Gratuito
                     </a>
@@ -304,7 +322,7 @@
 
     <!-- WhatsApp Floating Button -->
     <div class="whatsapp-float">
-        <a href="https://wa.me/5522999177780?text=Olá! Gostaria de agendar uma consulta com a Iara Castro." target="_blank" class="whatsapp-button">
+        <a href="https://wa.me/5522999177780?text=Olá! Gostaria de agendar uma consulta com a Iara Castro." target="_blank" class="whatsapp-button" onclick="return gtag_report_conversion(this.href);">
             <i class="fab fa-whatsapp"></i>
         </a>
     </div>
